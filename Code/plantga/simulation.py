@@ -17,21 +17,16 @@ def build_grid_positions(nx: int, ny: int, spacing: float) -> np.ndarray:
 
 def compute_pairwise_distances(positions: np.ndarray) -> np.ndarray:
     """Return pairwise Euclidean distance matrix for plant locations."""
-    # FILL IN THE BLANK: Given `positions` with shape (N, 2), return an (N, N)
-    # matrix where entry (i, j) is the Euclidean distance between plant i and j.
-
-    # Placeholder return
-    return np.zeros((positions.shape[0], positions.shape[0]), dtype=float)
+    diff = positions[:, np.newaxis, :] - positions[np.newaxis, :, :]  # (N, N, 2)
+    return np.sqrt((diff ** 2).sum(axis=-1))
 
 
 def interaction_kernel(distances: np.ndarray, rho: float) -> np.ndarray:
     """Compute interaction matrix exp(-r_ij / rho) * 1(r_ij <= rho), with zero diagonal."""
-    # FILL IN THE BLANK: Build K_ij = exp(-r_ij/rho) * 1(r_ij <= rho) and ensure
-    # the diagonal is zero (no self-interaction term).
-    _ = rho # Delete me
-
-    # Placeholder return
-    return np.zeros_like(distances, dtype=float)
+    within_range = distances <= rho
+    K = np.exp(-distances / rho) * within_range
+    np.fill_diagonal(K, 0.0)
+    return K
 
 
 def simulate_heights(
@@ -66,12 +61,11 @@ def simulate_heights(
     for k in range(num_steps - 1):
         current = np.clip(heights[k], 0.0, max_height)
 
-        # FILL IN THE BLANK: Implement the model update for one Euler step.
-        # Use the equations in the project handout:
-        #   G = G0 * (1 + b_w*W + b_f*F) * S^gamma
-        #   dh_i/dt = G * h_i^alpha - lambda * sum_{j!=i}(h_j * exp(-r_ij/rho) * 1(r_ij <= rho))
-        # and include numerical safety clipping similar to current/next height handling.
-
-        _ = (current, dt, kernel, W[k], F[k], S[k], params) # Delete me
+        G = params["G0"] * (1.0 + params["b_w"] * W[k] + params["b_f"] * F[k]) * (S[k] ** params["gamma"])
+        growth = G * (current ** params["alpha"])
+        interaction = params["lambda"] * (kernel @ current)  # kernel already has zero diagonal
+        dhdt = growth - interaction
+        next_h = np.clip(current + dt * dhdt, 0.0, max_height)
+        heights[k + 1] = next_h
 
     return heights

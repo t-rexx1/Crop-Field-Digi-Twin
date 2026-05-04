@@ -9,16 +9,10 @@ from .simulation import simulate_heights
 
 def normalized_mse(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """Return a scale-normalized objective value from y_true and y_pred."""
-    # FILL IN THE BLANK: Implement the objective function used by the GA.
-    # use the normalized MSE, i.e.
-    #   mean((y_pred - y_true)^2) / (var(y_true) + eps)
-
-    _ = (y_true, y_pred) # Delete me
-  
-    # Include non-finite handling to return a large penalty when needed.
     if not np.all(np.isfinite(y_pred)):
         return 1.0e6
-    return 0 # Placeholder return
+    eps = 1.0e-9
+    return float(np.mean((y_pred - y_true) ** 2) / (np.var(y_true) + eps))
 
 
 class GeneticAlgorithmEstimator:
