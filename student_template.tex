@@ -1,0 +1,119 @@
+% Document setup
+\RequirePackage{fix-cm}
+\documentclass{article}
+\usepackage{preamble}
+
+%===============================%
+%=============Inputs============%
+%===============================%
+\newcommand{\studentname}{YOUR NAME GOES HERE!}
+
+%===============================%
+%====Make Solutions Visible=====%
+%===============================%
+\showsolutionstrue
+
+%===============================%
+%=============Figures===========%
+%===============================%
+% Remember to start figures with 
+
+% \begin{figure}[H]
+
+% the [H] is critical!
+
+
+%==============================%
+%=====Beginning of Document====%
+%==============================%
+\begin{document}
+\pagestyle{mypagestyle}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROJECT 8: NONLINEAR SYSTEM IDENTIFICATION FOR A CROP FIELD DIGITAL-TWIN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\project{8}{Nonlinear System Identification for a Crop Field Digital-Twin}{Monday, May 4th  @ 11:59PM PST}
+
+\textbf{Submission:}
+\begin{enumerate}
+    \item Submit the PDF copy of your typed report on Gradescope before the end of day (11:59 pm PST). 
+    \item Submit your completed code to Gradescope. Failure to do so will result in 0 credit for the problems that require you to write code.
+\end{enumerate}
+
+\subsection*{Deliverables}
+\begin{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item[1. (a)] (10 points) Why is it important to evaluate our model, (say, in terms of mean squared error), on an unseen test set?
+
+\begin{answer}
+% %-----------------------------%
+% % Place answer here
+% %-----------------------------%
+\end{answer}
+
+\item[1. (b)] (25 points) Include an image of the generated train and test trajectories.
+
+\begin{answer}
+% %-----------------------------%
+% % Place answer here
+% \begin{figure}[H] will be helpful here
+% %-----------------------------%
+\end{answer}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item[2. (a)]  (15 points) Describe (just qualitatively, as we can't prove it numerically) how the increased number of parameters will impact our training error (i.e. lowest cost achieved with the GA). Will our model overfit or underfit the data?
+
+\begin{answer}
+% %-----------------------------%
+% % Place answer here
+% %-----------------------------%
+\end{answer}
+
+\item[2. (b)] (10 points) How does the MSE error function differ from the cost function presented in Chapter 7 of the textbook?
+
+\begin{answer}
+% %-----------------------------%
+% % Place answer here
+% %-----------------------------%
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item[3. (a)]  (10 points) Include the plots of height trajectories for the train and test seasons. Include the parameter recovery table as well. Does the model generalize well when tested on the left-out set?
+
+\begin{answer}
+% %-----------------------------%
+% % Place answer here
+% %-----------------------------%
+\end{answer}
+
+\item[3. (b)] (10 points) Which parameters are recovered accurately? Which are harder to identify, and why? Does this have a big impact on the predictive capability of our model?
+
+\begin{answer}
+% %-----------------------------%
+% % Place answer here
+% %-----------------------------%
+\end{answer}
+
+\item[3. (c)] (20 points) Generate new data by increasing the \texttt{noise\_sigma} parameter of \texttt{generate\_dataset} and report your parameter recovery table after running the GA on this new data. How does increasing the noise level of our model impact our ability to recover parameters accurately? 
+
+\begin{answer}
+% %-----------------------------%
+% % Place answer here
+% %-----------------------------%
+\end{answer}
+
+\end{enumerate}
+% End document
+\end{document}
